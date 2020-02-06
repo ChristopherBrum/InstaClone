@@ -1,6 +1,11 @@
 
 
 <% @posts.each do |post| %>
-    <%= image_tag post.image, class: "my-pic" %>
-    <p><%= post.caption %> | Photo by: <%= link_to  post.user.email, post.user %></p><br>
+    <div class="card">
+        <%= link_to(post.user.email, post.user, class: "card-text") %></p>
+        <%= link_to(image_tag(post.image, class: "my-pic"), post) %>
+        <div class="card-body">
+            <p><%= post.caption %></div>
+        </div>
+    </div>
 <% end %>

@@ -25,8 +25,35 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        Post.find(params[:id]).destroy
-        redirect_to "/posts"
+        post = Post.find(params[:id])
+        if current_user = post.user
+            post.destroy
+            redirect_to "/posts"
+            flash[:notice] = "Post Deleted"
+        else
+            redirect_back(fallback_location: root_path)
+            flash[:alert] = "Not Authoried to Delete Post"
+        end
+    end
+
+    def edit
+        @post = Post.find(params[:id])
+        if current_user != @post.user
+            sign_out current_user
+            redirect_to "/"
+            flash[:alert] = "Unauthorized request"
+        end
+    end
+
+    def update
+        @post = Post.find(params[:id])
+        if @post.update(post_params)
+            redirect_to @post
+            flash[:notice] = "Post has been updated!"
+        else
+            redirect_back(fallback_location[root_path])
+            flash[:alert] = "Post update has failed."
+        end
     end
 
     private

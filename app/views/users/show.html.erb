@@ -5,9 +5,12 @@
 <div class="feed-box">
 <% @user.posts.each do |post| %>
     <div class="feed"> 
-    <%= link_to  post.user.email, post.user %><br>
+    <%= link_to post.user.email, post.user %><br>
     <%= image_tag post.image, class: "my-pic" %>
-        <p><%= post.caption %></p>
+    <p><%= post.caption %></p>
+    <% if current_user == post.user %>
+        <%= button_to "Delete", post, method: :delete %>
+    <% end %>
     </div><br>
     <% end %>
 </div>

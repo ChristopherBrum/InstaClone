@@ -4,7 +4,8 @@
     <title>InstaClone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -19,13 +20,19 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
-      <p class="navbar-text pull-right">
+      <p class="navbar-text">
       <% if user_signed_in? %>
-        <a class="logo">InstaClone</a> | Logged in as: <strong><%= current_user.email %></strong> |
-        <%= link_to "Home", "/posts", :class => 'navbar-link' %> |
-        <%= link_to "New Post", "/posts/new", :class => 'navbar-link' %> |
-        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> 
+        <div class="logo-container" width=200px >
+          <%= image_tag(("IG.png"), :class => "ig_logo") %>
+          <a class="logo">InstaClone</a>
+        </div class="nav-container" width=300px >
+
+        <div><%= link_to "Home", "/posts", :class => 'navbar-link' %> |
+          <%= link_to "New Post", "/posts/new", :class => 'navbar-link' %> |
+          <%= link_to 'Edit Profile', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> 
+        </div>
+
       <% else %>
         <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
         <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
