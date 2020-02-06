@@ -1,5 +1,6 @@
 <div class="feed">
-    <%= image_tag @post.image, class: "my-pic" %>
-    <%= @post.caption %>
-    <%= link_to  @post.user.email, @post.user %>
+    <%= link_to  @post.user.email, @post.user %><br>
+    <%= image_tag @post.image, class: "my-pic" %><br>
+    <%= @post.caption %><%= button_to "Delete", @post, method: :delete %>
 </div>
+
