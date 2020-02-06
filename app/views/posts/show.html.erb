@@ -1,0 +1,5 @@
+<div class="feed">
+    <%= image_tag @post.image, class: "my-pic" %>
+    <%= @post.caption %>
+    <%= link_to  @post.user.email, @post.user %>
+</div>

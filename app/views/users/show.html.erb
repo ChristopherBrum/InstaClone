@@ -1,0 +1,15 @@
+<h1>User Profile</h1>
+<p>User email: <%= @user.email %></p>
+<p>Number of posts: <%= @user.posts.length %></p>
+
+<div class="feed-box">
+<% @user.posts.each do |post| %>
+    <div class="feed"> 
+    <%= link_to  post.user.email, post.user %><br>
+    <%= image_tag post.image, class: "my-pic" %>
+        <p><%= post.caption %></p>
+    </div><br>
+    <% end %>
+</div>
+
+
